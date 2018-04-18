@@ -12,6 +12,9 @@ namespace Graphs
 
         private int[] EdgeTo;
 
+        /// <summary>
+        /// Not used need to understand while revision
+        /// </summary>
         private int[] DistTo;
 
         private int S;
