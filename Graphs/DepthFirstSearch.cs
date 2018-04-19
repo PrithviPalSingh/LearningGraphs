@@ -22,7 +22,29 @@ namespace Graphs
             DFS(gapi, s);
         }
 
+        public DepthFirstSearch(DiaGraphAPI gapi, int s)
+        {
+            Marked = new bool[gapi.V];
+            EdgeTo = new int[gapi.V];
+            this.S = s;
+            DFS(gapi, s);
+        }
+
         private void DFS(GraphAPI gapi, int v)
+        {
+            Marked[v] = true;
+
+            foreach (var item in gapi.Adjacent(v))
+            {
+                if (!Marked[item])
+                {
+                    DFS(gapi, item);
+                    EdgeTo[item] = v;
+                }
+            }
+        }
+
+        private void DFS(DiaGraphAPI gapi, int v)
         {
             Marked[v] = true;
 

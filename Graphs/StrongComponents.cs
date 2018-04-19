@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
-    class ConnectedComponents
+    /// <summary>
+    /// Vertices v and w are strongly connected if there is a directed path from v->w 
+    /// and a directed path from w->v
+    /// </summary>
+    class StrongComponents
     {
         private bool[] Marked;
 
@@ -14,23 +18,26 @@ namespace Graphs
 
         private int count;
 
-        public ConnectedComponents(GraphAPI gapi)
+        public StrongComponents(DiaGraphAPI gapi, DiaGraphAPI gapiReverse)
         {
             Marked = new bool[gapi.V];
             Id = new int[gapi.V];
 
-            for (int i = 0; i < gapi.V; i++)
+            TopologicalSort ts = new TopologicalSort(gapiReverse);
+
+            foreach (var item in ts.IterateReversePO())
             {
-                if (!Marked[i])
+
+                if (!Marked[item])
                 {
-                    DFS(gapi, i);
+                    DFS(gapi, item);
                     count++;
                 }
             }
 
         }
-        
-        private void DFS(GraphAPI gapi, int v)
+
+        private void DFS(DiaGraphAPI gapi, int v)
         {
             Marked[v] = true;
             Id[v] = count;
@@ -41,7 +48,7 @@ namespace Graphs
                     DFS(gapi, item);
                 }
             }
-        }      
+        }
 
         private bool HasPathTo(int v)
         {
@@ -60,7 +67,7 @@ namespace Graphs
 
         public bool Connected(int v, int w)
         {
-            return Id[v] ==Id[w];
+            return Id[v] == Id[w];
         }
     }
 }

@@ -31,7 +31,12 @@ namespace Graphs
             //}
             #endregion
 
-            TestConnectedComponents();
+            //TestConnectedComponents();
+            //TestDFSUsingDiGraphAPI();
+            //TestBFSUsingDiGraphAPI();
+            //TestTopologicalSort();
+
+            TestKosarajuSharirAlgo();
             Console.Read();
         }
 
@@ -169,6 +174,192 @@ namespace Graphs
             ConnectedComponents ccs = new ConnectedComponents(gapi);
             Console.WriteLine(ccs.Count());
             Console.WriteLine(ccs.ConnectedId(7));
+        }
+
+        static void TestDiGraphApi()
+        {
+            DiaGraphAPI dgapi = new DiaGraphAPI(13);
+            dgapi.AddEdge(0, 1);
+            dgapi.AddEdge(0, 5);
+            dgapi.AddEdge(2, 3);
+            dgapi.AddEdge(2, 0);
+            dgapi.AddEdge(3, 2);
+            dgapi.AddEdge(3, 5);
+            dgapi.AddEdge(4, 2);
+            dgapi.AddEdge(4, 3);
+            dgapi.AddEdge(5, 4);
+            dgapi.AddEdge(6, 0);
+            dgapi.AddEdge(6, 4);
+            dgapi.AddEdge(6, 8);
+            dgapi.AddEdge(6, 9);
+            dgapi.AddEdge(7, 6);
+            dgapi.AddEdge(7, 9);
+            dgapi.AddEdge(8, 6);
+            dgapi.AddEdge(9, 10);
+            dgapi.AddEdge(9, 11);
+            dgapi.AddEdge(10, 12);
+            dgapi.AddEdge(11, 4);
+            dgapi.AddEdge(11, 12);
+            dgapi.AddEdge(12, 9);
+
+            for (int i = 0; i < 13; i++)
+            {
+                foreach (var item in dgapi.Adjacent(i))
+                {
+                    Console.WriteLine(i + "->" + item);
+                }
+            }
+
+        }
+
+        static void TestDFSUsingDiGraphAPI()
+        {
+            DiaGraphAPI dgapi = new DiaGraphAPI(13);
+            dgapi.AddEdge(0, 1);
+            dgapi.AddEdge(0, 5);
+            dgapi.AddEdge(2, 3);
+            dgapi.AddEdge(2, 0);
+            dgapi.AddEdge(3, 2);
+            dgapi.AddEdge(3, 5);
+            dgapi.AddEdge(4, 2);
+            dgapi.AddEdge(4, 3);
+            dgapi.AddEdge(5, 4);
+            dgapi.AddEdge(6, 0);
+            dgapi.AddEdge(6, 4);
+            dgapi.AddEdge(6, 8);
+            dgapi.AddEdge(6, 9);
+            dgapi.AddEdge(7, 6);
+            dgapi.AddEdge(7, 9);
+            dgapi.AddEdge(8, 6);
+            dgapi.AddEdge(9, 10);
+            dgapi.AddEdge(9, 11);
+            dgapi.AddEdge(10, 12);
+            dgapi.AddEdge(11, 4);
+            dgapi.AddEdge(11, 12);
+            dgapi.AddEdge(12, 9);
+
+            DepthFirstSearch dfs = new DepthFirstSearch(dgapi, 6);
+
+            foreach (var item in dfs.PathTo(1))
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void TestBFSUsingDiGraphAPI()
+        {
+            DiaGraphAPI dgapi = new DiaGraphAPI(13);
+            dgapi.AddEdge(0, 1);
+            dgapi.AddEdge(0, 5);
+            dgapi.AddEdge(2, 3);
+            dgapi.AddEdge(2, 0);
+            dgapi.AddEdge(3, 2);
+            dgapi.AddEdge(3, 5);
+            dgapi.AddEdge(4, 2);
+            dgapi.AddEdge(4, 3);
+            dgapi.AddEdge(5, 4);
+            dgapi.AddEdge(6, 0);
+            dgapi.AddEdge(6, 4);
+            dgapi.AddEdge(6, 8);
+            dgapi.AddEdge(6, 9);
+            dgapi.AddEdge(7, 6);
+            dgapi.AddEdge(7, 9);
+            dgapi.AddEdge(8, 6);
+            dgapi.AddEdge(9, 10);
+            dgapi.AddEdge(9, 11);
+            dgapi.AddEdge(10, 12);
+            dgapi.AddEdge(11, 4);
+            dgapi.AddEdge(11, 12);
+            dgapi.AddEdge(12, 9);
+
+            BFSDiGraphAPI dfs = new BFSDiGraphAPI(dgapi, 6);
+
+            foreach (var item in dfs.PathTo(1))
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void TestTopologicalSort()
+        {
+            DiaGraphAPI dgapi = new DiaGraphAPI(7);
+            dgapi.AddEdge(0, 1);
+            dgapi.AddEdge(0, 2);
+            dgapi.AddEdge(0, 5);
+            dgapi.AddEdge(1, 4);
+            dgapi.AddEdge(3, 2);
+            dgapi.AddEdge(3, 4);
+            dgapi.AddEdge(3, 5);
+            dgapi.AddEdge(3, 6);
+            dgapi.AddEdge(5, 2);
+            dgapi.AddEdge(6, 4);
+            dgapi.AddEdge(6, 0);
+
+            TopologicalSort dfs = new TopologicalSort(dgapi);
+
+            foreach (var item in dfs.IterateReversePO())
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static void TestKosarajuSharirAlgo()
+        {
+            DiaGraphAPI dgapi1 = new DiaGraphAPI(13);
+            dgapi1.AddEdge(0, 2);
+            dgapi1.AddEdge(0, 6);
+            dgapi1.AddEdge(1, 0);
+            dgapi1.AddEdge(2, 3);
+            dgapi1.AddEdge(2, 4);
+            dgapi1.AddEdge(3, 2);
+            dgapi1.AddEdge(3, 4);
+            dgapi1.AddEdge(4, 5);
+            dgapi1.AddEdge(4, 6);
+            dgapi1.AddEdge(4, 11);
+            dgapi1.AddEdge(5, 0);
+            dgapi1.AddEdge(5, 3);
+            dgapi1.AddEdge(6, 7);
+            dgapi1.AddEdge(6, 8);
+            dgapi1.AddEdge(8, 6);
+            dgapi1.AddEdge(9, 6);           
+            dgapi1.AddEdge(9, 7);
+            dgapi1.AddEdge(9, 12);
+            dgapi1.AddEdge(10, 9);
+            dgapi1.AddEdge(11, 9);
+            dgapi1.AddEdge(12, 10);         
+            dgapi1.AddEdge(12, 11);
+
+            DiaGraphAPI dgapi = new DiaGraphAPI(13);
+            dgapi.AddEdge(0, 1);
+            dgapi.AddEdge(0, 5);
+            dgapi.AddEdge(2, 3);
+            dgapi.AddEdge(2, 0);
+            dgapi.AddEdge(3, 2);
+            dgapi.AddEdge(3, 5);
+            dgapi.AddEdge(4, 2);
+            dgapi.AddEdge(4, 3);
+            dgapi.AddEdge(5, 4);
+            dgapi.AddEdge(6, 0);
+            dgapi.AddEdge(6, 4);
+            dgapi.AddEdge(6, 8);
+            dgapi.AddEdge(6, 9);
+            dgapi.AddEdge(7, 6);
+            dgapi.AddEdge(7, 9);
+            dgapi.AddEdge(8, 6);
+            dgapi.AddEdge(9, 10);
+            dgapi.AddEdge(9, 11);
+            dgapi.AddEdge(10, 12);
+            dgapi.AddEdge(11, 4);
+            dgapi.AddEdge(11, 12);
+            dgapi.AddEdge(12, 9);
+
+            StrongComponents sc = new StrongComponents(dgapi, dgapi1);
+            Console.WriteLine(sc.Count());
+            Console.WriteLine(sc.ConnectedId(0));
+            Console.WriteLine(sc.ConnectedId(1));
+            Console.WriteLine(sc.ConnectedId(6));
+            Console.WriteLine(sc.ConnectedId(7));
+            Console.WriteLine(sc.ConnectedId(9));
         }
     }
 }
