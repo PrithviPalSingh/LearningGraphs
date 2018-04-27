@@ -36,7 +36,10 @@ namespace Graphs
             //TestBFSUsingDiGraphAPI();
             //TestTopologicalSort();
 
-            TestKosarajuSharirAlgo();
+            //TestKosarajuSharirAlgo();
+
+            TestKruskalMST();
+            TestLazyPrimsMST();
             Console.Read();
         }
 
@@ -321,12 +324,12 @@ namespace Graphs
             dgapi1.AddEdge(6, 7);
             dgapi1.AddEdge(6, 8);
             dgapi1.AddEdge(8, 6);
-            dgapi1.AddEdge(9, 6);           
+            dgapi1.AddEdge(9, 6);
             dgapi1.AddEdge(9, 7);
             dgapi1.AddEdge(9, 12);
             dgapi1.AddEdge(10, 9);
             dgapi1.AddEdge(11, 9);
-            dgapi1.AddEdge(12, 10);         
+            dgapi1.AddEdge(12, 10);
             dgapi1.AddEdge(12, 11);
 
             DiaGraphAPI dgapi = new DiaGraphAPI(13);
@@ -360,6 +363,66 @@ namespace Graphs
             Console.WriteLine(sc.ConnectedId(6));
             Console.WriteLine(sc.ConnectedId(7));
             Console.WriteLine(sc.ConnectedId(9));
+        }
+
+        static void TestKruskalMST()
+        {
+            EdgeWeightedGraph ewg = new EdgeWeightedGraph(16);
+            ewg.Addedge(new EdgeAPI(4, 5, .35));
+            ewg.Addedge(new EdgeAPI(4, 7, .37));
+            ewg.Addedge(new EdgeAPI(5, 7, .28));
+            ewg.Addedge(new EdgeAPI(0, 7, .16));
+            ewg.Addedge(new EdgeAPI(1, 5, .32));
+            ewg.Addedge(new EdgeAPI(0, 4, .38));
+            ewg.Addedge(new EdgeAPI(2, 3, .17));
+            ewg.Addedge(new EdgeAPI(1, 7, .19));
+            ewg.Addedge(new EdgeAPI(0, 2, .26));
+            ewg.Addedge(new EdgeAPI(1, 2, .36));
+            ewg.Addedge(new EdgeAPI(1, 3, .29));
+            ewg.Addedge(new EdgeAPI(2, 7, .34));
+            ewg.Addedge(new EdgeAPI(6, 2, .40));
+            ewg.Addedge(new EdgeAPI(3, 6, .52));
+            ewg.Addedge(new EdgeAPI(6, 0, .58));
+            ewg.Addedge(new EdgeAPI(6, 4, .93));
+
+            KruskalMST mst = new KruskalMST(ewg);
+
+            foreach (var item in mst.Edges())
+            {
+                Console.WriteLine(item.V + "-->" + item.W + ": " + item.Weight);
+            }
+
+            Console.WriteLine("Weight: " + mst.Weight());
+        }
+
+        static void TestLazyPrimsMST()
+        {
+            EdgeWeightedGraph ewg = new EdgeWeightedGraph(16);
+            ewg.Addedge(new EdgeAPI(4, 5, .35));
+            ewg.Addedge(new EdgeAPI(4, 7, .37));
+            ewg.Addedge(new EdgeAPI(5, 7, .28));
+            ewg.Addedge(new EdgeAPI(0, 7, .16));
+            ewg.Addedge(new EdgeAPI(1, 5, .32));
+            ewg.Addedge(new EdgeAPI(0, 4, .38));
+            ewg.Addedge(new EdgeAPI(2, 3, .17));
+            ewg.Addedge(new EdgeAPI(1, 7, .19));
+            ewg.Addedge(new EdgeAPI(0, 2, .26));
+            ewg.Addedge(new EdgeAPI(1, 2, .36));
+            ewg.Addedge(new EdgeAPI(1, 3, .29));
+            ewg.Addedge(new EdgeAPI(2, 7, .34));
+            ewg.Addedge(new EdgeAPI(6, 2, .40));
+            ewg.Addedge(new EdgeAPI(3, 6, .52));
+            ewg.Addedge(new EdgeAPI(6, 0, .58));
+            ewg.Addedge(new EdgeAPI(6, 4, .93));
+
+            LazyPrimsMST mst = new LazyPrimsMST(ewg);
+
+            foreach (var item in mst.Edges())
+            {
+                Console.WriteLine(item.V + "-->" + item.W + ": " + item.Weight);
+            }
+
+            Console.WriteLine("Weight: " + mst.Weight());
         }
     }
 }
