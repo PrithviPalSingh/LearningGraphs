@@ -44,8 +44,8 @@ namespace Graphs
             TestDijkstraShortestPath();
             Console.WriteLine();
             TestTSShortestPath();
-
-            TestTopologicalSort();
+            Console.WriteLine();
+            TestBellmanFordShortestPath();
             Console.Read();
         }
 
@@ -481,7 +481,7 @@ namespace Graphs
         static void TestTSShortestPath()
         {
             EdgeWeightedDiGraph ewdg = new EdgeWeightedDiGraph(8);
-            ewdg.AddEdge(new DirectedEdgeAPI(0, 1, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 1, -5));
             ewdg.AddEdge(new DirectedEdgeAPI(0, 4, 9));
             ewdg.AddEdge(new DirectedEdgeAPI(0, 7, 8));
             ewdg.AddEdge(new DirectedEdgeAPI(1, 2, 12));
@@ -502,6 +502,33 @@ namespace Graphs
             for (int i = 1; i < djk.EdgeTo.Length; i++)
             {
                 Console.WriteLine($"TP Distance from 0 to {djk.EdgeTo[i].W} is {djk.DistTo[i]}");
+            }
+        }
+
+        static void TestBellmanFordShortestPath()
+        {
+            EdgeWeightedDiGraph ewdg = new EdgeWeightedDiGraph(8);
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 1, -5));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 4, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 7, 8));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 2, 12));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 3, 15));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 7, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 3, 3));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 6, 11));
+            ewdg.AddEdge(new DirectedEdgeAPI(3, 6, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 5, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 6, 20));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 7, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 2, 1));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 6, 13));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 5, 6));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 2, 7));
+
+            BellmanFordShortestPath djk = new BellmanFordShortestPath(ewdg, 0);
+            for (int i = 1; i < djk.EdgeTo.Length; i++)
+            {
+                Console.WriteLine($"BLF Distance from 0 to {djk.EdgeTo[i].W} is {djk.DistTo[i]}");
             }
         }
     }
