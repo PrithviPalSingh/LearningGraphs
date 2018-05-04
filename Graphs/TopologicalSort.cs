@@ -26,6 +26,17 @@ namespace Graphs
             }
         }
 
+        public TopologicalSort(EdgeWeightedDiGraph ewdg)
+        {
+            ReversePostOrder = new Stack<int>();
+            Marked = new bool[ewdg.V];
+            for (int v = 0; v < ewdg.V; v++)
+            {
+                if (!Marked[v])
+                    DFS(ewdg, v);
+            }
+        }
+
         private void DFS(DiaGraphAPI dgapi, int v)
         {
             Marked[v] = true;
@@ -36,6 +47,21 @@ namespace Graphs
 
                 if (!Marked[item])
                     DFS(dgapi, item);               
+            }
+
+            ReversePostOrder.Push(v);
+        }
+
+        private void DFS(EdgeWeightedDiGraph ewdg, int v)
+        {
+            Marked[v] = true;
+
+            foreach (var item in ewdg.Adj(v))
+            {
+                Marked[v] = true;
+
+                if (!Marked[item.W])
+                    DFS(ewdg, item.W);
             }
 
             ReversePostOrder.Push(v);

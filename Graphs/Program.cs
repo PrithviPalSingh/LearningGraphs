@@ -38,8 +38,14 @@ namespace Graphs
 
             //TestKosarajuSharirAlgo();
 
-            TestKruskalMST();
-            TestLazyPrimsMST();
+            //TestKruskalMST();
+            //TestLazyPrimsMST();
+
+            TestDijkstraShortestPath();
+            Console.WriteLine();
+            TestTSShortestPath();
+
+            TestTopologicalSort();
             Console.Read();
         }
 
@@ -423,6 +429,80 @@ namespace Graphs
             }
 
             Console.WriteLine("Weight: " + mst.Weight());
+        }
+
+        static void Test()
+        {
+            EdgeWeightedDiGraph ewdg = new EdgeWeightedDiGraph(16);
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 5, .35));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 4, .35));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 7, .37));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 7, .28));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 5, .28));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 1, .32));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 4, .38));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 2, .26));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 3, .39));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 3, .29));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 7, .34));
+            ewdg.AddEdge(new DirectedEdgeAPI(6, 2, .40));
+            ewdg.AddEdge(new DirectedEdgeAPI(3, 6, .52));
+            ewdg.AddEdge(new DirectedEdgeAPI(6, 0, .58));
+            ewdg.AddEdge(new DirectedEdgeAPI(6, 4, .93));
+        }
+
+        static void TestDijkstraShortestPath()
+        {
+            EdgeWeightedDiGraph ewdg = new EdgeWeightedDiGraph(8);
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 1, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 4, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 7, 8));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 2, 12));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 3, 15));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 7, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 3, 3));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 6, 11));
+            ewdg.AddEdge(new DirectedEdgeAPI(3, 6, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 5, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 6, 20));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 7, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 2, 1));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 6, 13));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 5, 6));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 2, 7));
+
+            DijkstraShortestPath djk = new DijkstraShortestPath(ewdg, 0);
+            for (int i = 1; i < djk.EdgeTo.Length; i++)
+            {
+                Console.WriteLine($"Distance from 0 to {djk.EdgeTo[i].W} is {djk.DistTo[i]}");
+            }
+        }
+
+        static void TestTSShortestPath()
+        {
+            EdgeWeightedDiGraph ewdg = new EdgeWeightedDiGraph(8);
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 1, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 4, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(0, 7, 8));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 2, 12));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 3, 15));
+            ewdg.AddEdge(new DirectedEdgeAPI(1, 7, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 3, 3));
+            ewdg.AddEdge(new DirectedEdgeAPI(2, 6, 11));
+            ewdg.AddEdge(new DirectedEdgeAPI(3, 6, 9));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 5, 4));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 6, 20));
+            ewdg.AddEdge(new DirectedEdgeAPI(4, 7, 5));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 2, 1));
+            ewdg.AddEdge(new DirectedEdgeAPI(5, 6, 13));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 5, 6));
+            ewdg.AddEdge(new DirectedEdgeAPI(7, 2, 7));
+
+            TopologicalSortAcyclicGraphShortestPath djk = new TopologicalSortAcyclicGraphShortestPath(ewdg, 0);
+            for (int i = 1; i < djk.EdgeTo.Length; i++)
+            {
+                Console.WriteLine($"TP Distance from 0 to {djk.EdgeTo[i].W} is {djk.DistTo[i]}");
+            }
         }
     }
 }
