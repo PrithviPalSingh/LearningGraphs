@@ -41,11 +41,13 @@ namespace Graphs
             //TestKruskalMST();
             //TestLazyPrimsMST();
 
-            TestDijkstraShortestPath();
-            Console.WriteLine();
-            TestTSShortestPath();
-            Console.WriteLine();
-            TestBellmanFordShortestPath();
+            //TestDijkstraShortestPath();
+            //Console.WriteLine();
+            //TestTSShortestPath();
+            //Console.WriteLine();
+            //TestBellmanFordShortestPath();
+
+            TestFordFulkersonAlgorithm();
             Console.Read();
         }
 
@@ -529,6 +531,26 @@ namespace Graphs
             for (int i = 1; i < djk.EdgeTo.Length; i++)
             {
                 Console.WriteLine($"BLF Distance from 0 to {djk.EdgeTo[i].W} is {djk.DistTo[i]}");
+            }
+        }
+
+        static void TestFordFulkersonAlgorithm()
+        {
+            FlowNetwork fnw = new FlowNetwork(6);
+            fnw.AddEdge(new FlowEdge(0, 1, 2.0));
+            fnw.AddEdge(new FlowEdge(0, 2, 3.0));
+            fnw.AddEdge(new FlowEdge(1, 3, 3.0));
+            fnw.AddEdge(new FlowEdge(1, 4, 1.0));
+            fnw.AddEdge(new FlowEdge(2, 3, 1.0));
+            fnw.AddEdge(new FlowEdge(2, 4, 1.0));
+            fnw.AddEdge(new FlowEdge(3, 5, 2.0));
+            fnw.AddEdge(new FlowEdge(4, 5, 3.0));
+
+            FordFulkersonAlgo ffa = new FordFulkersonAlgo(fnw, 0, 5);
+
+            for (int i = 0; i < fnw.V; i++)
+            {
+                Console.WriteLine($"Vertex {i} is present in cut: {ffa.inCut(i)}");
             }
         }
     }

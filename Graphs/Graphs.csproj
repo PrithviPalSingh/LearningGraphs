@@ -53,6 +53,9 @@
     <Compile Include="EdgeAPI.cs" />
     <Compile Include="EdgeWeightedDiGraph.cs" />
     <Compile Include="EdgeWeightedGraph.cs" />
+    <Compile Include="FlowEdge.cs" />
+    <Compile Include="FlowNetwork.cs" />
+    <Compile Include="FordFulkersonAlgo.cs" />
     <Compile Include="GraphAPI.cs" />
     <Compile Include="IndexedMinPQ.cs" />
     <Compile Include="KruskalMST.cs" />
