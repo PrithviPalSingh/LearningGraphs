@@ -4,13 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Set of vertices connected pairwise by edges
+/// Path - Sequence of vertices connected by edges
+/// Cycle - Path whose first and last vertices are same
+/// Connected - Two vertices are connected if there is a path between them.
+/// Problems -
+///     - Is there a path b/w s and t?
+///     - What is the shortest path b/w s and t?
+///     - Is there a cycle in the graph?
+///     - Is there a cycle that uses each edge exactly once? -- EULER TOUR
+///     - Is there a cycle that uses each vertex exactly once? -- HAMILTON TOUR
+///     - Is there a way to connect all of the vertices? - Connectivity
+///     - What is the best way to connect all of the vertices? - MST
+///     - Is there a vertex whose removal disconnects the graph? - Biconnnectivity
+///     - Can you draw the graph in the plane with no crossing edges? - Planarity
+///     - Do two adjacency lists represent the same graph? - Graph isomorphism
+/// </summary>
 namespace Graphs
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //TestDFS();
+            TestDFS();
             //TestBFS();
 
             #region -- hacker rank BFS
@@ -47,7 +64,7 @@ namespace Graphs
             //Console.WriteLine();
             //TestBellmanFordShortestPath();
 
-            TestFordFulkersonAlgorithm();
+            //TestFordFulkersonAlgorithm();
             Console.Read();
         }
 

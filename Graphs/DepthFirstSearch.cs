@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// 1. Mark vertex v as visited
+    /// 2. Recursively visit all unmarked vertices w adjacent to v.
+    /// </summary>
     class DepthFirstSearch
     {
         private bool[] Marked;
@@ -14,6 +18,15 @@ namespace Graphs
 
         private int S;
 
+        /// <summary>
+        /// 1. DFS marks all the vertices connected to s in time proportional
+        ///    to sum of their degrees.
+        /// 2. If w is marked, then w is connected to s. 
+        /// 3. If w is connected to s, then w is marked.
+        /// 4. Visit each vertex once.
+        /// </summary>
+        /// <param name="gapi"></param>
+        /// <param name="s"></param>
         public DepthFirstSearch(GraphAPI gapi, int s)
         {
             Marked = new bool[gapi.V];
