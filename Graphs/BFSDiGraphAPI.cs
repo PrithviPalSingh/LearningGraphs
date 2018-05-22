@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// Web crawler can be implemented using BFS
+    /// </summary>
     class BFSDiGraphAPI
     {
         private bool[] Marked;
@@ -37,13 +40,14 @@ namespace Graphs
             while (queue.Count > 0)
             {
                 int v = queue.Dequeue();
-                foreach (var item in gapi.Adjacent(v))
+                foreach (var w in gapi.Adjacent(v))
                 {
-                    if (!Marked[item])
+                    if (!Marked[w])
                     {
-                        queue.Enqueue(item);
-                        Marked[item] = true;
-                        EdgeTo[item] = v;
+                        queue.Enqueue(w);
+                        Marked[w] = true;
+                        EdgeTo[w] = v;
+                        DistTo[w] = DistTo[v] + 1;
                     }
                 }
             }

@@ -6,6 +6,19 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// Create a Auxilliary queue and repeat the following until queue is empty
+    /// 1. Remove vertes v from queue
+    /// 2. Add to queue all unmarked veritices adjacent to v and mark them.
+    /// 
+    /// Properties:
+    /// 1. BFS computes shortest path (fewer # of edges) from s 
+    ///    to all other vertices in a graph in time proportional to E+V.
+    /// 2. BFS keep unmarked vertices in QUEUE while DFS keep them in STACK.
+    /// 3. Correctness:
+    ///         Queue always consists of zero or more vertices of distance
+    ///         k from s, followed by zero or more vertices of distance k+1 from s.
+    /// </summary>
     class BreadthFirstSearch
     {
         private bool[] Marked;
@@ -33,17 +46,17 @@ namespace Graphs
             Queue<int> queue = new Queue<int>();
             queue.Enqueue(s);
             Marked[s] = true;
-
             while (queue.Count > 0)
             {
-                int v = queue.Dequeue();
-                foreach (var item in gapi.Adjacent(v))
+                int v = queue.Dequeue();                
+                foreach (var w in gapi.Adjacent(v))
                 {
-                    if (!Marked[item])
+                    if (!Marked[w])
                     {
-                        queue.Enqueue(item);
-                        Marked[item] = true;
-                        EdgeTo[item] = v;
+                        queue.Enqueue(w);
+                        Marked[w] = true;
+                        EdgeTo[w] = v;
+                        DistTo[w] = DistTo[v] + 1;
                     }
                 }
             }

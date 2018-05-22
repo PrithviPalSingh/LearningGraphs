@@ -20,6 +20,10 @@ using System.Threading.Tasks;
 ///     - Is there a vertex whose removal disconnects the graph? - Biconnnectivity
 ///     - Can you draw the graph in the plane with no crossing edges? - Planarity
 ///     - Do two adjacency lists represent the same graph? - Graph isomorphism
+/// A bipartite graph, also called a bigraph, is a set of graph vertices 
+/// decomposed into two disjoint sets such that no two graph vertices within 
+/// the same set are adjacent. 
+/// A bipartite graph is a special case of a k-partite graph with .
 /// </summary>
 namespace Graphs
 {
@@ -27,7 +31,7 @@ namespace Graphs
     {
         static void Main(string[] args)
         {
-            TestDFS();
+            //TestDFS();
             //TestBFS();
 
             #region -- hacker rank BFS
@@ -53,7 +57,7 @@ namespace Graphs
             //TestBFSUsingDiGraphAPI();
             //TestTopologicalSort();
 
-            //TestKosarajuSharirAlgo();
+            TestKosarajuSharirAlgo();
 
             //TestKruskalMST();
             //TestLazyPrimsMST();
@@ -266,9 +270,9 @@ namespace Graphs
             dgapi.AddEdge(11, 12);
             dgapi.AddEdge(12, 9);
 
-            DepthFirstSearch dfs = new DepthFirstSearch(dgapi, 6);
+            DirectedDFS dfs = new DirectedDFS(dgapi, 0);
 
-            foreach (var item in dfs.PathTo(1))
+            foreach (var item in dfs.PathTo(4))
             {
                 Console.WriteLine(item);
             }

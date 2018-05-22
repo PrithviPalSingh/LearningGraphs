@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// DiGraph - Set of vertices connected pairwise by directed edges
+    /// In Degree - # of edges coming into a vertex
+    /// Out Degree= # of edges leaving a vertex
+    /// DFS is a diagraph algorithm
+    /// </summary>
     class DiaGraphAPI
     {
         private int v;

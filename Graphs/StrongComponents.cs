@@ -4,11 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Kosaraju-Sharir algorithm (Twice DFS)
+/// </summary>
 namespace Graphs
 {
     /// <summary>
     /// Vertices v and w are strongly connected if there is a directed path from v->w 
     /// and a directed path from w->v
+    /// Key property is EQUIVALENCE RELATION
+    ///     1. v is strongly connected to v
+    ///     2. if v is strongly connected to w, the w is strongly connected to v
+    ///     3. if v is strongly connected to w and w to x, then v is strongly connected to x
+    /// A STRONG COMPONENT is a maximal subset of strongly connected vertices
     /// </summary>
     class StrongComponents
     {
@@ -18,6 +26,12 @@ namespace Graphs
 
         private int count;
 
+        /// <summary>
+        /// Compute topological order (reverse post order) in kernel DAG
+        /// Run DFS, considering vertices in reverse topological order
+        /// </summary>
+        /// <param name="gapi"></param>
+        /// <param name="gapiReverse"></param>
         public StrongComponents(DiaGraphAPI gapi, DiaGraphAPI gapiReverse)
         {
             Marked = new bool[gapi.V];
@@ -34,7 +48,6 @@ namespace Graphs
                     count++;
                 }
             }
-
         }
 
         private void DFS(DiaGraphAPI gapi, int v)

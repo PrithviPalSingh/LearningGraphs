@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Graphs
 {
     /// <summary>
-    /// DAG - Dirceted acyclic graph
+    /// DAG - Directed acyclic graph
+    /// No dircted cycle. If it has a cycle no way to get a topological sort
+    /// All edges point upwards
+    /// Reverse post order is tolpologically sorted array
+    /// DFS can be used to identify cycles
     /// </summary>
     class TopologicalSort
     {

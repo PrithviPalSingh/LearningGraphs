@@ -49,6 +49,7 @@
     <Compile Include="DepthFirstSearch.cs" />
     <Compile Include="DiaGraphAPI.cs" />
     <Compile Include="DijkstraShortestPath.cs" />
+    <Compile Include="DirectedDFS.cs" />
     <Compile Include="DirectedEdgeAPI.cs" />
     <Compile Include="EdgeAPI.cs" />
     <Compile Include="EdgeWeightedDiGraph.cs" />
