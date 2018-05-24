@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// Cut: A cut in a grap is a partition of its vertices into two non-empty sets
+    /// Crossing Edges: Connects a vertex in one set to vertex in the other
+    /// Cut property: Given any cut, the crossing edge of min weight in in MST
+    /// Algo: Consider edges in ascending order of weight
+    ///       Add next edge to tree T unless doing so would create a cycle
+    /// SINGLE LINK CLUSTERING can be achieve using this
+    /// </summary>
     class KruskalMST
     {
         private Queue<EdgeAPI> mst = new Queue<EdgeAPI>();
 
         public KruskalMST(EdgeWeightedGraph G)
         {
-            UnOrderedPriorityQueue<EdgeAPI> pq = new UnOrderedPriorityQueue<EdgeAPI>(G.V);
+            UnOrderedPriorityQueue<EdgeAPI> pq = new UnOrderedPriorityQueue<EdgeAPI>(G.Edges.Count);
 
             foreach (EdgeAPI item in G.Edges)
             {

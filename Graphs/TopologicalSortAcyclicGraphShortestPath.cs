@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// 1. Consider vertices in topological order
+    /// 2. Relax all edges pointing from that vertex
+    /// 3. Edges can be negative and every edge is relaxed once
+    /// 4. Longest path can be found by negating the weights
+    /// 5. Parallel job scehduling can be resolved using shortest path algo
+    /// </summary>
     class TopologicalSortAcyclicGraphShortestPath
     {
         private DirectedEdgeAPI[] edgeTo;
@@ -22,7 +29,7 @@ namespace Graphs
                 DistTo[i] = double.PositiveInfinity;
             }
 
-            DistTo[s] = 0;
+            DistTo[s] = 0.0;
 
             TopologicalSort ts = new TopologicalSort(DG);
 

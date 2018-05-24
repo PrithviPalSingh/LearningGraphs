@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// Consider vertices in increasing order of distance from s
+    ///     (non-tree vertex with lowest distTo[] value)
+    /// Add vertex to tree an relax all edges pointing from that vertex
+    /// * Every edge v-w is relaxed only one (when v is relaxed)
+    /// Prim's and Dijkstra's algo are essentially the same and distinction is:
+    ///     * Prim's consider next vertex as closest vertex to the tree (via an undirected graph)
+    ///     * While Dijkstra's algo consider closest vertex to the source (via a directed path)
+    /// Basically Prim's, Dijkstra's, BFS and DFS are all in same family of algorithms
+    ///     * All compute a graph's spanning tree
+    /// </summary>
     class DijkstraShortestPath
     {
         private DirectedEdgeAPI[] edgeTo;

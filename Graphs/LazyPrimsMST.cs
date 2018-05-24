@@ -9,6 +9,16 @@ namespace Graphs
     /// <summary>
     /// Running time is ELogE. Can put all edges in priority queue.
     /// Extra space E.
+    /// Algo: Start with vertex 0 and greedily grow tree
+    ///       Add to T the min weight edge with exactly one endpoint in T
+    ///       Repeat until v-1 edges
+    /// Mantain a priority queue of edges with at least one endpoint in T
+    ///     - Key = Edge; Priority =  Weight of edge
+    ///     - Delete min to determine next edge v-w to add to T
+    ///     - Disregard ab edge if both endpoints v and w are in T
+    ///     - Otherwise, let w be the vertes not in T
+    ///         a. add to PQ any edge incident to w (assuming other endpoint not in T)
+    ///         b. add w to T
     /// </summary>
     class LazyPrimsMST
     {
@@ -20,7 +30,7 @@ namespace Graphs
 
         public LazyPrimsMST(EdgeWeightedGraph ewg)
         {
-            pq = new UnOrderedPriorityQueue<EdgeAPI>(ewg.V);
+            pq = new UnOrderedPriorityQueue<EdgeAPI>(ewg.Edges.Count);
             mst = new Queue<EdgeAPI>();
             marked = new bool[ewg.V];
             Visit(ewg, 0);

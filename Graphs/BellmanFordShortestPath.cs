@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// 1. If there is no negative cycle, there is a SPT and vice-versa
+    /// 2. Repeat V times
+    ///     - Relax each edge
+    /// 3. Detect a negative cycle using Bellman-ford algo
+    ///     - If a vertex v is updated in phase v, there exisits a ngative cycle
+    ///       and can trace back edgeTo[v] entries to find it
+    /// 4. Arbitrage detection
+    /// </summary>
     class BellmanFordShortestPath
     {
         private DirectedEdgeAPI[] edgeTo;
