@@ -59,11 +59,11 @@ namespace Graphs
 
             //TestKosarajuSharirAlgo();
 
-            TestKruskalMST();
-            Console.WriteLine();
-            TestLazyPrimsMST();
-            Console.WriteLine();
-            TestEagerPrimsMST();
+            //TestKruskalMST();
+            //Console.WriteLine();
+            //TestLazyPrimsMST();
+            //Console.WriteLine();
+            //TestEagerPrimsMST();
 
             //TestDijkstraShortestPath();
             //Console.WriteLine();
@@ -71,7 +71,7 @@ namespace Graphs
             //Console.WriteLine();
             //TestBellmanFordShortestPath();
 
-            //TestFordFulkersonAlgorithm();
+            TestFordFulkersonAlgorithm();
             Console.Read();
         }
 

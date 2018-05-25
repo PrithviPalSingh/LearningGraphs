@@ -6,8 +6,35 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
+    /// <summary>
+    /// An edge weighted digraph, source vertex s and target vertex t
+    /// Cut: an st-Cut (cut) is a partition of vertices into two disjoint 
+    /// sets, with s is in one set A nad t in the other set B.
+    /// Capacity: Is the sum of capacities of the edges from A to B.
+    /// 
+    /// Min-Cut: Find the cut with minimum capacity.
+    /// 
+    /// st-Flow: is an assignment of values to the edges such that:
+    ///          - Capacity constraint: 0 <= edge's flow <= edge's capacity
+    ///          - Local equilibrium: inflow == outflow
+    ///          - outflow of s == inflow of t
+    /// Max-Flow: Value of a flow is the inflow at t
+    /// 
+    /// Augmenting Path: Find an undirected path from s to t such that:
+    ///          - Can increase flow on the forward edges (not full)
+    ///          - Can decrease flow in the backward edge (not empty)
+    ///          - For a certain path bottle neck will be minimum capacity of edges 
+    ///            building this path
+    ///            
+    /// Ford-Fulkerson algorithm:
+    ///          - Start with 0 flow
+    ///          - While there exists an augmenting path:
+    ///             - Find an augmenting path
+    ///             - Compute bottleneck capacity
+    ///             - Increase flow on that path by bottleneck capacity
+    /// </summary>
     class FordFulkersonAlgo
-    {
+    {        
         private bool[] marked; // true if s->v path in residual n/w
 
         private FlowEdge[] edgeTo; // last edge on s->v path
